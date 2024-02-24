@@ -7,6 +7,8 @@ CREATE TABLE IF NOT EXISTS "newsletter"."days" (
 	"actual_date" date NOT NULL,
 	"lunch" varchar,
 	"x_period" varchar,
+	"rotation_day" varchar,
+	"location" varchar,
 	"notes" varchar,
 	"ap_info" varchar,
 	"cc_info" varchar,

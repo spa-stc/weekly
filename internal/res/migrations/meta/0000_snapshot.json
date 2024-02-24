@@ -1,5 +1,5 @@
 {
-  "id": "cc21b062-d2d3-49cc-abba-7bcc7a2d30e8",
+  "id": "98710e3d-19e8-4d8e-8507-3d4a36293b28",
   "prevId": "00000000-0000-0000-0000-000000000000",
   "version": "5",
   "dialect": "pg",
@@ -40,6 +40,18 @@
         },
         "x_period": {
           "name": "x_period",
+          "type": "varchar",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "rotation_day": {
+          "name": "rotation_day",
+          "type": "varchar",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "location": {
+          "name": "location",
           "type": "varchar",
           "primaryKey": false,
           "notNull": false

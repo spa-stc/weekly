@@ -16,6 +16,8 @@ export const days = appSchema.table(
 		// Application Layer Information.
 		lunch: varchar('lunch'),
 		x_period: varchar('x_period'),
+		rotation_day: varchar('rotation_day'),
+		location: varchar('location'),
 		notes: varchar('notes'),
 		ap_info: varchar('ap_info'),
 		cc_info: varchar('cc_info'),
