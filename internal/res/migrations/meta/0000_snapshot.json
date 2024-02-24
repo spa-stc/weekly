@@ -1,0 +1,128 @@
+{
+  "id": "cc21b062-d2d3-49cc-abba-7bcc7a2d30e8",
+  "prevId": "00000000-0000-0000-0000-000000000000",
+  "version": "5",
+  "dialect": "pg",
+  "tables": {
+    "days": {
+      "name": "days",
+      "schema": "newsletter",
+      "columns": {
+        "year": {
+          "name": "year",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "week": {
+          "name": "week",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "day": {
+          "name": "day",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "actual_date": {
+          "name": "actual_date",
+          "type": "date",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "lunch": {
+          "name": "lunch",
+          "type": "varchar",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "x_period": {
+          "name": "x_period",
+          "type": "varchar",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "notes": {
+          "name": "notes",
+          "type": "varchar",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "ap_info": {
+          "name": "ap_info",
+          "type": "varchar",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "cc_info": {
+          "name": "cc_info",
+          "type": "varchar",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "grade_9": {
+          "name": "grade_9",
+          "type": "varchar",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "grade_10": {
+          "name": "grade_10",
+          "type": "varchar",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "grade_11": {
+          "name": "grade_11",
+          "type": "varchar",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "grade_12": {
+          "name": "grade_12",
+          "type": "varchar",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "created_at": {
+          "name": "created_at",
+          "type": "timestamp",
+          "primaryKey": false,
+          "notNull": true,
+          "default": "now()"
+        },
+        "updated_at": {
+          "name": "updated_at",
+          "type": "timestamp",
+          "primaryKey": false,
+          "notNull": true,
+          "default": "now()"
+        }
+      },
+      "indexes": {},
+      "foreignKeys": {},
+      "compositePrimaryKeys": {
+        "days_year_week_day_pk": {
+          "name": "days_year_week_day_pk",
+          "columns": [
+            "year",
+            "week",
+            "day"
+          ]
+        }
+      },
+      "uniqueConstraints": {}
+    }
+  },
+  "enums": {},
+  "schemas": {
+    "newsletter": "newsletter"
+  },
+  "_meta": {
+    "columns": {},
+    "schemas": {},
+    "tables": {}
+  }
+}
