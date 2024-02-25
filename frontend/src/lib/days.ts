@@ -13,7 +13,12 @@ dayjs.extend(utc);
 
 // Get date information from dayjs.
 export const getDate = (): Date => {
-	const day = dayjs().utcOffset(-6);
+	let day = dayjs().utcOffset(-6);
+
+	// Allow pre-fetching of the next week starting on Sunday.
+	if (day.isoWeekday() == 7) {
+		day = day.add(1, 'day');
+	}
 
 	return {
 		year: day.year(),
