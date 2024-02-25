@@ -10,7 +10,7 @@
 	let lunch = day.lunch?.replaceAll('\\n', ', ') || 'TBD';
 </script>
 
-<div class="card">
+<div class="card mb-1">
 	<div class="card-header">
 		<h3 class="card-title">{datestring}:</h3>
 	</div>

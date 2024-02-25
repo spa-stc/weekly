@@ -6,7 +6,7 @@
 	export let data: PageData;
 </script>
 
-<div class="page-body container-md">
+<div class="page-body container-sm">
 	<div class="card">
 		<div class="card-header">
 			<ul class="nav nav-tabs card-header-tabs" data-bs-toggle="tabs">
@@ -25,7 +25,9 @@
 		<div class="card-body">
 			<div class="tab-content">
 				<div class="tab-pane active show" id="tabs-home-1">
-					<!-- <a href="/" class="btn btn-sm btn-ghost-rss" style="font-size: large">Week Overview:</a> -->
+					<a href="/" class="btn btn-sm btn-ghost-rss mb-2" style="font-size: large">
+						Week Overview:
+					</a>
 					<Days days={data.week} />
 				</div>
 				<div class="tab-pane" id="tabs-home-2">
