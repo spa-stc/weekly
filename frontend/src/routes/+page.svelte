@@ -6,6 +6,10 @@
 	export let data: PageData;
 </script>
 
+<svelte:head>
+	<title>Student Newsletter - Week Overview</title>
+</svelte:head>
+
 <div class="page-body container-sm">
 	<div class="card">
 		<div class="card-header">
