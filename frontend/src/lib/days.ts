@@ -1,5 +1,6 @@
 import dayjs from 'dayjs';
 import isoWeek from 'dayjs/plugin/isoWeek';
+import utc from 'dayjs/plugin/utc';
 
 export declare interface Date {
 	year: number;
@@ -8,10 +9,11 @@ export declare interface Date {
 }
 
 dayjs.extend(isoWeek);
+dayjs.extend(utc);
 
 // Get date information from dayjs.
 export const getDate = (): Date => {
-	const day = dayjs();
+	const day = dayjs().utcOffset(-6);
 
 	return {
 		year: day.year(),

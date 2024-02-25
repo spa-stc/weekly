@@ -1,8 +1,9 @@
 import { getDate } from '$lib/days';
 import { days } from '$lib/schema';
 import { db } from '$lib/server/database';
-import { eq, and, gte, lte } from 'drizzle-orm';
+import { eq, and, gt, lt } from 'drizzle-orm';
 import type { PageServerLoad } from './$types';
+import { error } from '@sveltejs/kit';
 
 // Load data for the homepage.
 export const load: PageServerLoad = async () => {
@@ -14,10 +15,14 @@ export const load: PageServerLoad = async () => {
 			and(
 				eq(days.year, appweek.year),
 				eq(days.week, appweek.week),
-				gte(days.weekday, 1),
-				lte(days.weekday, 5)
+				gt(days.weekday, 0),
+				lt(days.weekday, 6)
 			)
 		);
+
+	if (!(week.length > 0)) {
+		error(404, 'week not found');
+	}
 
 	return {
 		week: week
