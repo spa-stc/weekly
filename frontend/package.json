@@ -32,7 +32,6 @@
 	},
 	"type": "module",
 	"dependencies": {
-		"clerk-sveltekit": "^0.4.1",
 		"dayjs": "^1.11.10",
 		"dotenv": "^16.4.5",
 		"drizzle-orm": "^0.29.4",
