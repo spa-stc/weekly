@@ -1,7 +1,6 @@
 <script lang="ts">
 	import Announcements from '$lib/components/Announcements.svelte';
 	import Days from '$lib/components/Days.svelte';
-	import TopButtons from '$lib/components/TopButtons.svelte';
 	import type { PageData } from './$types';
 
 	export let data: PageData;
@@ -23,7 +22,7 @@
 		</ul>
 
 		<div class="card-actions">
-			<TopButtons />
+			<a href="/" class="btn btn-sm">Submit Announcement</a>
 		</div>
 	</div>
 	<div class="card-body">
