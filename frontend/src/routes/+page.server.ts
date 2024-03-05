@@ -15,8 +15,8 @@ export const load: PageServerLoad = async () => {
 			and(
 				eq(days.year, appweek.year),
 				eq(days.week, appweek.week),
-				gt(days.weekday, 1),
-				lt(days.weekday, 7)
+				gt(days.weekday, 0),
+				lt(days.weekday, 6)
 			)
 		);
 

@@ -6,7 +6,7 @@
 
 	export let day: Day;
 
-	let datestring = dayjs(day.date).format('dddd - MM/DD/YY');
+	let datestring = dayjs(day.date).add(1, 'day').format('dddd - MM/DD/YY');
 	let lunch = day.lunch?.replaceAll('\\n', ', ') || 'TBD';
 </script>
 
