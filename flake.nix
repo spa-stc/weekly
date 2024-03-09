@@ -7,14 +7,25 @@
     # Framework For Defining "Flake Modules" with imports
     flake-parts.url = "github:hercules-ci/flake-parts";
 
+    # Go Module Granularity.
     gomod2nix = {
       url = "github:nix-community/gomod2nix";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
+    # Deployments
+    deploy-rs.url = "github:serokell/deploy-rs";
+
+    # Secrets 
+    agenix.url = "github:ryantm/agenix";
   };
 
   outputs = inputs@{ self, flake-parts, ... }:
     flake-parts.lib.mkFlake { inherit inputs; } {
+      imports = [
+        ./hosts
+      ];
+
       systems = [ "x86_64-linux" "aarch64-linux" ];
 
       perSystem = { config, self', inputs', pkgs, system, ... }: {
@@ -57,6 +68,8 @@
         devShells.default = pkgs.mkShell {
           buildInputs = with pkgs; [
             just
+            deploy-rs
+            inputs.agenix.packages."${system}".default
           ];
         };
       };
