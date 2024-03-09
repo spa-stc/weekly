@@ -22,3 +22,5 @@ go.work
 
 # Enviroment Files
 .env
+
+result
