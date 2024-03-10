@@ -3,7 +3,9 @@ let
   cfg = config.stc;
 in
 with lib; {
-  options.stc = { };
+  options.stc = {
+    sshRootLogin = mkEnableOption "Allow Root Login Over SSH";
+  };
 
   config = {
     users.groups.stc = { };
@@ -24,7 +26,7 @@ with lib; {
       allowUnfree = true;
     };
 
-    users.users.root = {
+    users.users.root = mkIf cfg.sshRootLogin {
       openssh.authorizedKeys.keys = [
         # Foehammer
         "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAICz6aGtthhHrVYHrvk3BzCJTRFb3ppRB2MjHGI+eFteG foehammer127@gmail.com"
