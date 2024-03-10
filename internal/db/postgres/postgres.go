@@ -24,8 +24,7 @@ type Database struct {
 }
 
 func NewDatabase(logger *zap.Logger, c config.Config) (*Database, error) {
-
-	pool, err := pgxpool.New(context.Background(), c.Db.Url)
+	pool, err := pgxpool.New(context.Background(), c.DB.URL)
 	if err != nil {
 		return &Database{}, err
 	}
@@ -33,7 +32,7 @@ func NewDatabase(logger *zap.Logger, c config.Config) (*Database, error) {
 	db := &Database{
 		logger,
 		pool,
-		c.Db.Url,
+		c.DB.URL,
 	}
 
 	return db, nil

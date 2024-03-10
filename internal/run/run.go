@@ -42,7 +42,10 @@ func Run() error {
 	dayrepo := postgres.NewDayRepo(logger, db)
 
 	cron := cron.NewRunner(logger, config)
-	cron.RegisterJobs(dayupdatescron.NewDayUpdatesCronJob(logger, dayrepo, config))
+	err = cron.RegisterJobs(dayupdatescron.NewDayUpdatesCronJob(logger, dayrepo, config))
+	if err != nil {
+		return fmt.Errorf("error registering cron jobs: %s", err.Error())
+	}
 
 	cron.Run()
 	defer cron.Shutdown()
