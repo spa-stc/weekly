@@ -21,9 +21,9 @@
 			</li>
 		</ul>
 
-		<div class="card-actions">
+		<!-- <div class="card-actions">
 			<a href="/" class="btn btn-sm">Submit Announcement</a>
-		</div>
+		</div> -->
 	</div>
 	<div class="card-body">
 		<div class="tab-content">
