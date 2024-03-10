@@ -2,6 +2,7 @@ package cron
 
 import (
 	"fmt"
+	"time"
 
 	"github.com/robfig/cron/v3"
 	"github.com/spa-stc/newsletter/internal/config"
@@ -25,7 +26,7 @@ type Job interface {
 
 // Get a new cron runner.
 func NewRunner(logger *zap.Logger, _ config.Config) *Runner {
-	runner := cron.New()
+	runner := cron.New(cron.WithLocation(time.FixedZone("CST", -5)))
 
 	return &Runner{
 		runner,
