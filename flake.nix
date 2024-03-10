@@ -24,6 +24,7 @@
     flake-parts.lib.mkFlake { inherit inputs; } {
       imports = [
         ./hosts
+        ./lib/modules/cron/default.nix
       ];
 
       systems = [ "x86_64-linux" "aarch64-linux" ];

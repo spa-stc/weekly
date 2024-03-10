@@ -7,6 +7,9 @@
     ./filesystems.nix
   ];
 
+  stc = {
+    cron.enable = true;
+  };
 
   services.openssh = {
     enable = true;

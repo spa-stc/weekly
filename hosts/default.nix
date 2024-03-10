@@ -5,6 +5,9 @@ let
     modules = with inputs; [
       # Agenix Secrets
       agenix.nixosModules.default
+
+      self.nixosModules.cron
+      ../lib/common
     ] ++ extraModules;
   };
 
