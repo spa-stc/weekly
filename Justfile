@@ -5,3 +5,7 @@ deploy-all:
 
 deploy NODE:
   nix develop -c deploy .#{{NODE}}
+
+build-cron-docker:
+  nix build .#cron-docker
+  docker load < result
