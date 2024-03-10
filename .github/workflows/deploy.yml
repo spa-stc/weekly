@@ -1,0 +1,45 @@
+name: Deploy
+
+on:
+  release:
+    types: [published]
+
+jobs:
+  deploy-nix:
+    name: VM Deployment
+    runs-on: ubuntu-latest
+    environment: Server Deploy
+    permissions:
+      contents: read
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - uses: cachix/install-nix-action@v22
+        name: Setup Nix
+        with:
+          github_access_token: ${{ secrets.GITHUB_TOKEN }}
+          extra_nix_config: |
+            trusted-public-keys = cache.garnix.io:CTFPyKSLcx5RMJKfLo5EEPUObbA78b0YQ2DTCJXqr9g= cache.nixos.org-1:6NCHdD59X431o0gWypbMrAURkbJ16ZPMQFGspcDShjY=
+            substituters = https://cache.garnix.io https://cache.nixos.org/
+
+      - name: Setup SSH
+        run: |
+          mkdir -p ~/.ssh/
+          sudo chmod 700 ~/.ssh
+          echo "$SSH_PRIVATE_KEY" > ~/.ssh/id_ed22519
+          sudo chmod 600 ~/.ssh/id_ed22519
+          echo "$SSH_CONFIG" > ~/.ssh/config
+          sudo chmod 600 ~/.ssh/config
+          echo "$SSH_KNOWN_HOSTS" > ~/.ssh/known_hosts
+          sudo chmod 600 ~/.ssh/known_hosts
+        shell: bash
+        env:
+          SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
+          SSH_KNOWN_HOSTS: ${{ secrets.SSH_KNOWN_HOSTS }}
+          SSH_CONFIG: ${{ secrets.SSH_CONFIG }}
+          SSH_KEY_PATH: ~/.ssh/id_ed22519
+
+      - name: Deploy to VM
+        run: nix develop -c deploy .#cron
+        shell: bash

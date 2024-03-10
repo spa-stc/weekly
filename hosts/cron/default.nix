@@ -9,6 +9,7 @@
 
   stc = {
     cron.enable = true;
+    sshRootLogin = true;
   };
 
   services.openssh = {
