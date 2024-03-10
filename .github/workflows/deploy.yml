@@ -1,0 +1,41 @@
+name: Deploy
+
+on:
+  release:
+    types: [published]
+
+jobs:
+  deploy-nix:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - uses: cachix/install-nix-action@v22
+        name: Setup Nix
+        with:
+          github_access_token: ${{ secrets.GITHUB_TOKEN }}
+          extra_nix_config: |
+            trusted-public-keys = cache.garnix.io:CTFPyKSLcx5RMJKfLo5EEPUObbA78b0YQ2DTCJXqr9g=
+            substituters = https://cache.garnix.io https://cache.nixos.org/
+
+      - name: Setup SSH
+        run: |
+          mkdir -p ~/.ssh/
+          echo "$SSH_PRIVATE_KEY" > ../private.key
+          sudo chmod 600 ~/.ssh/id_ed22519
+          echo "$SSH_CONFIG" > ~/.ssh/config
+          echo "$SSH_KNOWN_HOSTS" > ~/.ssh/known_hosts
+        shell: bash
+        env:
+          SSH_PRIVATE_KEY: ${{secrets.SSH_PRIVATE_KEY}}
+          SSH_KNOWN_HOSTS: ${{secrets.SSH_KNOWN_HOSTS}}
+          SSH_CONFIG: ${{secrets.SSH_CONFIG}}
+
+      - name: Enter DevEnv
+        run: nix develop
+
+      - name: Deploy To VM
+        run: just deploy-all
