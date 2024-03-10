@@ -1,0 +1,39 @@
+name: Deploy
+
+on:
+  release:
+    types: [published]
+
+jobs:
+  build_and_push:
+    name: Publish Docker Image to Github Packages
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      packages: write
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+      - uses: cachix/install-nix-action@v22
+        name: Setup Nix
+        with:
+          github_access_token: ${{ secrets.GITHUB_TOKEN }}
+          extra_nix_config:
+            trusted-public-keys = cache.garnix.io:CTFPyKSLcx5RMJKfLo5EEPUObbA78b0YQ2DTCJXqr9g= cache.nixos.org-1:6NCHdD59X431o0gWypbMrAURkbJ16ZPMQFGspcDShjY=
+            substituters = https://cache.garnix.io https://cache.nixos.org/
+
+      - name: Build Docker Image
+        run: nix develop -c just build-cron-docker
+
+      - name: Log in to the Container registry
+        uses: docker/login-action@65b78e6e13532edd9afa3aa52ac7964289d1a9c1
+        with:
+          registry: ghcr.io
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Tag Docker Image
+        run: docker tag newsletter/cron:latest ghcr.io/spa-stc/weekly/cron:${{ github.event.release.tag_name }}
+
+      - name: Push Docker Image
+        run: docker push ghcr.io/spa-stc/weekly/cron:${{ github.event.release.tag_name }}
