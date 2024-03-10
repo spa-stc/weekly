@@ -5,4 +5,6 @@ let
 
   keys = devKeys ++ machineKeys;
 in
-rec { }
+rec {
+  "secrets/cronenv.age".publicKeys = keys;
+}

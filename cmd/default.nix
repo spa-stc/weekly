@@ -1,4 +1,4 @@
-{ config, self', inputs', pkgs, system, ... }:
+{ self', inputs', pkgs, system, ... }:
 rec {
   packages.cron = pkgs.buildGoApplication {
     name = "cron";
