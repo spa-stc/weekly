@@ -36,7 +36,7 @@ with lib; {
         Restart = "on-failure";
         WorkingDirectory = "/srv/weeklycron";
         RestartSec = "30s";
-        Type = "notify";
+        Type = "exec";
         StandardOutput = "/var/cronservice.log";
         StandardError = "/var/cronservice-error.log";
       };
