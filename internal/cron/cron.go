@@ -1,9 +1,7 @@
 package cron
 
 import (
-	"context"
 	"fmt"
-	"time"
 
 	"github.com/robfig/cron/v3"
 	"github.com/spa-stc/newsletter/internal/config"
@@ -26,7 +24,7 @@ type Job interface {
 }
 
 // Get a new cron runner.
-func NewRunner(logger *zap.Logger, c config.Config) *Runner {
+func NewRunner(logger *zap.Logger, _ config.Config) *Runner {
 	runner := cron.New()
 
 	return &Runner{
@@ -45,16 +43,14 @@ func (r *Runner) Run() {
 func (r *Runner) Shutdown() {
 	r.logger.Info("shutting down cron service")
 	ctx := r.cron.Stop()
-	ctx, cancel := context.WithTimeout(ctx, 10*time.Second)
-	defer cancel()
 	<-ctx.Done()
-	r.logger.Info("sucessfully shut down cron service")
+	r.logger.Info("successfully shut down cron service")
 }
 
 // Register Cron Jobs To Be Run By The Scheduler.
-func (c *Runner) RegisterJobs(jobs ...Job) error {
+func (r *Runner) RegisterJobs(jobs ...Job) error {
 	for _, v := range jobs {
-		_, err := c.cron.AddFunc(v.GetSpec(), v.Run)
+		_, err := r.cron.AddFunc(v.GetSpec(), v.Run)
 		if err != nil {
 			return fmt.Errorf("error registering cron jobs: %s", err.Error())
 		}

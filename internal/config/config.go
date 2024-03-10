@@ -12,8 +12,8 @@ import (
 // Configuration object parsed from env.
 type Config struct {
 	Production bool `conf:"default:false"`
-	Db         struct {
-		Url string `conf:"required"`
+	DB         struct {
+		URL string `conf:"required"`
 	}
 	Google struct {
 		SheetID string `conf:"required"`
@@ -22,7 +22,7 @@ type Config struct {
 	IcalURL string `conf:"required"`
 }
 
-// Get a new configuration object parsed from the enviroment.
+// Get a new configuration object parsed from the environment.
 func NewConfig() (Config, error) {
 	var cfg Config
 
