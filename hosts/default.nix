@@ -32,4 +32,8 @@ in
   flake.deploy.nodes = {
     cron = mkSystemDeployNode self.nixosConfigurations.cron "cron" "root";
   };
+
+
+
+  flake.checks = builtins.mapAttrs (system: deployLib: deployLib.deployChecks self.deploy) inputs.deploy-rs.lib;
 }
