@@ -18,7 +18,7 @@
 		<div class="datagrid">
 			<TextItem title="Lunch" body={lunch} />
 			<TextItem title="XPeriod" body={day.x_period} />
-			<TextItem title="Location" body={day.location} />
+			<TextItem title="XPeriod Location" body={day.location} />
 			<TextItem title="Notes" body={day.notes} />
 
 			<!-- Optional Text Items -->
