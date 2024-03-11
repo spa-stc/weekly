@@ -31,6 +31,9 @@
 				<a href="/" class="btn btn-sm btn-ghost-rss mb-2" style="font-size: large">
 					Week Overview:
 				</a>
+				<h1 class="mb-2 text-red btn btn-sm btn-ghost-rss" style="font-size: medium;">
+					(Non-Lunch Data May Be Incorrect)
+				</h1>
 				<Days days={data.week} />
 			</div>
 			<div class="tab-pane" id="tabs-home-2">
