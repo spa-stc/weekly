@@ -37,7 +37,7 @@
 				<Days days={data.week} />
 			</div>
 			<div class="tab-pane" id="tabs-home-2">
-				<Announcements />
+				<Announcements announcements={data.announcements} />
 			</div>
 		</div>
 	</div>

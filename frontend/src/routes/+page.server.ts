@@ -25,6 +25,14 @@ export const load: PageServerLoad = async () => {
 	}
 
 	return {
-		week: week
+		week: week,
+		announcements: [
+			{
+				author: 'Lorenzo Good',
+				title: 'Announcements Are Coming Soon',
+				date: '2024-03-11',
+				content: 'The announcements feature will be arriving soon.'
+			}
+		]
 	};
 };
