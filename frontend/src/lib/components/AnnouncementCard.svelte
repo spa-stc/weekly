@@ -17,7 +17,7 @@
 		<div class="d-flex align-items-center pt-4 mt-auto">
 			<div>
 				<a href="/" class="text-body">From: {announcement.author ? announcement.author : 'None'}</a>
-				<div class="text-secondary">3 days ago</div>
+				<div class="text-secondary">{daystring}</div>
 			</div>
 		</div>
 	</div>
