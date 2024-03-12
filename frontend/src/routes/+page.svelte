@@ -32,7 +32,7 @@
 					Week Overview:
 				</a>
 				<h1 class="mb-2 text-red btn btn-sm btn-ghost-rss" style="font-size: medium;">
-					(Non-Lunch Data May Be Incorrect)
+					(Non-Lunch Data May Be Incorrect & Design is in Beta)
 				</h1>
 				<Days days={data.week} />
 			</div>
